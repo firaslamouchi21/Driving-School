@@ -1,4 +1,4 @@
-// database-mysql/index.js
+
 
 const mysql = require('mysql2');
 const config = require('./config');
