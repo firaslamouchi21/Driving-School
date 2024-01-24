@@ -1,8 +1,7 @@
-// controllers/straightroadsController.js
-const StraightroadsModel = require('../models/straightroadsModel');
+const straightroadsModel = require('../models/straightroadsModel');
 
 const getAllLessons = (req, res) => {
-  StraightroadsModel.getAllLessons((error, results) => {
+  straightroadsModel.getAll((error, results) => {
     if (error) {
       console.error("Error fetching lessons:", error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -13,9 +12,9 @@ const getAllLessons = (req, res) => {
 };
 
 const addLesson = (req, res) => {
-  const lessonData = req.body;
+  const newLesson = req.body;
 
-  StraightroadsModel.addLesson(lessonData, (error, result) => {
+  straightroadsModel.create(newLesson, (error, result) => {
     if (error) {
       console.error("Error adding lesson:", error);
       res.status(500).json({ error: "Internal Server Error" });
@@ -26,10 +25,10 @@ const addLesson = (req, res) => {
 };
 
 const updateLesson = (req, res) => {
-  const { lessonId } = req.params;
-  const updatedLessonData = req.body;
+  const params = req.body;
+  const lessonId = req.params.lessonId;
 
-  StraightroadsModel.updateLesson(lessonId, updatedLessonData, (err, results) => {
+  straightroadsModel.update(lessonId, params, (err, results) => {
     if (err) {
       console.error("Error updating lesson:", err);
       res.status(500).send(err);
@@ -41,9 +40,9 @@ const updateLesson = (req, res) => {
 };
 
 const deleteLesson = (req, res) => {
-  const { lessonId } = req.params;
+  const lessonId = req.params.lessonId;
 
-  StraightroadsModel.deleteLesson(lessonId, (error, result) => {
+  straightroadsModel.remove(lessonId, (error, result) => {
     if (error) {
       console.error("Error deleting lesson:", error);
       res.status(500).json({ error: "Internal Server Error" });
