@@ -1,11 +1,17 @@
-// routes/straightroadsRoutes.js
 const express = require('express');
 const router = express.Router();
-const StraightroadsController = require('../controllers/straightroadsController');
+const straightroadsController = require('../controllers/straightroadsController');
 
-router.get('/', StraightroadsController.getAllLessons);
-router.post('/', StraightroadsController.addLesson);
-router.put('/:lessonId', StraightroadsController.updateLesson);
-router.delete('/:lessonId', StraightroadsController.deleteLesson);
+// Get all lessons
+router.get('/lessons', straightroadsController.getAllLessons);
+
+// Add a lesson
+router.post('/lessons', straightroadsController.addLesson);
+
+// Update a lesson
+router.put('/lessons/:lessonId', straightroadsController.updateLesson);
+
+// Delete a lesson
+router.delete('/lessons/:lessonId', straightroadsController.deleteLesson);
 
 module.exports = router;
